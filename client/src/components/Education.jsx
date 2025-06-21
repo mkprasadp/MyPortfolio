@@ -6,7 +6,7 @@ const Education = () => {
     {
       degree: 'B.Tech in Computer Science (AIML)',
       school: 'Veltech University',
-      duration: '2022–2026',
+      duration: '2022–Present',
     },
     {
       degree: 'Intermediate (MPC)',
