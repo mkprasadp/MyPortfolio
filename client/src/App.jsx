@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
-import Header from './components/Header';
-import About from './components/About';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Contact from './components/Contact';
-import Skills from './components/Skills';
+import Navbar from './components/Navbar/Navbar';
+import Header from './components/Header/Header';
+import About from './components/About/About';
+import Projects from './components/Projects/Projects';
+import Education from './components/Education/Education';
+import Contact from './components/Contact/Contact';
+import Skills from './components/Skills/Skills';
 
 function App() {
   return (
