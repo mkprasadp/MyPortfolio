@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+  background: #f9f9f9;
+  color: #333;
+}
+
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-section {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  padding: 4rem 2rem;
+  text-align: center;
+  color: white;
+}
+
+.section {
+  padding: 2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.skills-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.skills-list li {
+  background: #eee;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
