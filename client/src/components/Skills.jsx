@@ -9,8 +9,8 @@ const skillCategories = {
   "Frontend": [
     { name: "React.js", icon: <FaReact /> },
     { name: "JavaScript", icon: <FaJs /> },
-    { name: "HTML5", icon: <FaHtml5 /> },
-    { name: "CSS3", icon: <FaCss3Alt /> },
+    { name: "HTML", icon: <FaHtml5 /> },
+    { name: "CSS", icon: <FaCss3Alt /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss /> },
     //{ name: "Redux", icon: <SiRedux /> },
     //{ name: "TypeScript", icon: <SiTypescript /> },
