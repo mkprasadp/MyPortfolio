@@ -21,18 +21,18 @@ const skillCategories = {
     { name: "Express.js", icon: <SiExpress /> },
     { name: "MongoDB", icon: <SiMongodb /> },
   ],
-  "Programming Fundamentals": [
-    { name: "Java", icon: <FaJava /> },
-    { name: "DSA", icon: <GiBrain /> },
-    { name: "SQL", icon: <FaDatabase /> },
-
-  ],
   "Tools & Deployment": [
     { name: "Git & GitHub", icon: <FaGitAlt /> },
     { name: "Postman", icon: <SiPostman /> },
     { name: "Vercel", icon: <SiVercel /> },
     { name: "Firebase", icon: <SiFirebase /> },
   ],
+  "Programming Fundamentals": [
+    { name: "Java", icon: <FaJava /> },
+    { name: "DSA", icon: <GiBrain /> },
+    { name: "SQL", icon: <FaDatabase /> },
+
+  ]
 };
 
 const Skills = () => {
