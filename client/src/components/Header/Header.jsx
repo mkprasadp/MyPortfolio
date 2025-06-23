@@ -1,9 +1,11 @@
 import React from 'react';
 import './Header.css';
+import profile from '../../assets/profile.png'
 
 const Header = () => {
   return (
     <header className="header-section">
+      <img src={profile} alt="" className="profile-img"/>
       <div className="header-content">
         <h1>Hello, I'm <span>P.Manikanta Prasad</span></h1>
         <p className="header-subtitle">A Passionate Full-Stack Web Developer</p>
