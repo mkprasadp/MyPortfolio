@@ -14,7 +14,7 @@ const Header = () => {
         </p>
         <div className="header-buttons">
           <a href="#projects" className="btn primary">View Projects</a>
-          <a href="https://drive.google.com/file/d/13umtIlkoxJx_snC4mMpJ_V2Jg3siD2_b/view" className="btn outline" download>Download Resume</a>
+          <a href="https://drive.google.com/file/d/13umtIlkoxJx_snC4mMpJ_V2Jg3siD2_b/view" target='_blank' className="btn outline" download>Download Resume</a>
         </div>
       </div>
     </header>
