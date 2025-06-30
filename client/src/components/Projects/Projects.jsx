@@ -6,7 +6,7 @@ const Projects = () => {
     {
       title: 'Portfolio Website',
       description: 'Personal portfolio built with React and CSS',
-      link: 'https://github.com/mkprasadp/',
+      link: 'https://github.com/mkprasadp/MyPortfolio/',
     },
     {
       title: 'E-commerce App',
