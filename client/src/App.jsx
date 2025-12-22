@@ -11,7 +11,7 @@ import Skills from './components/Skills';
 function App() {
   return (
     <div className="bg-white text-gray-800 overflow-x-hidden">
-      <Navbar />
+      <Navbar/>
       <main>
         <Header />
         <About />
