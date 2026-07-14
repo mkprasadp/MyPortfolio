@@ -10,16 +10,19 @@ import Skills from './components/Skills';
 
 function App() {
   return (
-    <div className="bg-white text-gray-800 overflow-x-hidden">
+    <div>
       <Navbar />
       <main>
         <Header />
         <About />
-        <Skills/>
+        <Skills />
         <Projects />
         <Education />
         <Contact />
       </main>
+      <footer className="site-footer">
+        built by <span>Manikanta Prasad Padala</span> — © 2026
+      </footer>
     </div>
   );
 }

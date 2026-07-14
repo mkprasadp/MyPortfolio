@@ -1,54 +1,45 @@
 import React from "react";
+import useReveal from "./useReveal";
+
+const educationData = [
+  {
+    degree: "B.Tech in Computer Science (AI & ML)",
+    school: "Veltech University",
+    duration: "2022 — 2026",
+  },
+  {
+    degree: "Intermediate (MPC)",
+    school: "Sri Sarada Junior College",
+    duration: "2020 — 2022",
+  },
+  {
+    degree: "SSC (10th Standard)",
+    school: "Sree Ram High School",
+    duration: "2019 — 2020",
+  },
+];
 
 const Education = () => {
-  const educationData = [
-    {
-      degree: "B.Tech in Computer Science (AIML)",
-      school: "Veltech University",
-      duration: "2022 – Present",
-    },
-    {
-      degree: "Intermediate (MPC)",
-      school: "Sri Sarada Junior College",
-      duration: "2020 – 2022",
-    },
-    {
-      degree: "SSC (10th Standard)",
-      school: "Sree Ram High School",
-      duration: "2019 – 2020",
-    },
-  ];
+  const headRef = useReveal();
+  const listRef = useReveal();
 
   return (
-    <section id="education" className="bg-gray-50 py-20 px-6 md:px-12 lg:px-24">
-      <div className="max-w-5xl mx-auto">
-
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800">
-            Education 🎓
-          </h2>
-          <p className="mt-3 text-gray-600">
-            My academic journey so far
-          </p>
+    <section id="education" style={{ background: "var(--paper-2)" }}>
+      <div className="section-inner">
+        <div className="section-head reveal" ref={headRef}>
+          <span className="tag">O(log n) — education</span>
+          <h2>Built on fundamentals.</h2>
         </div>
 
-        <div className="space-y-8">
+        <div className="timeline reveal" ref={listRef}>
           {educationData.map((edu, index) => (
-            <div key={index}
-              className="bg-white rounded-xl p-6 shadow-sm border hover:shadow-md transition">
-              <h3 className="text-xl font-semibold text-indigo-600">
-                {edu.degree}
-              </h3>
-              <p className="text-gray-700 mt-1">
-                {edu.school}
-              </p>
-              <span className="text-sm text-gray-500 mt-2 block">
-                {edu.duration}
-              </span>
+            <div className="tl-item" key={index}>
+              <div className="yr">{edu.duration}</div>
+              <h4>{edu.degree}</h4>
+              <div className="school">{edu.school}</div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

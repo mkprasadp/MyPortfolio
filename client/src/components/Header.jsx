@@ -1,63 +1,136 @@
-import React from "react";
-import profile from "../assets/photo_copy.jpeg";
+import React, { useEffect, useState } from "react";
+
+const LINES = [
+  {
+    prompt: "$ whoami",
+    out: "> Manikanta Prasad Padala — Full-Stack Developer & AI/ML student",
+  },
+  {
+    prompt: "$ cat focus.txt",
+    out: "> Building scalable web apps with the MERN stack, backed by strong DSA fundamentals.",
+  },
+  {
+    prompt: "$ status --check",
+    out: "> Open to internships & entry-level roles",
+  },
+];
 
 const Header = () => {
+  // Array of { prompt, out, promptDone, outDone } tracking typed progress
+  const [typed, setTyped] = useState([]);
+  const [lineIndex, setLineIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [phase, setPhase] = useState("prompt"); // 'prompt' | 'pause' | 'out' | 'done'
+
+  useEffect(() => {
+    if (lineIndex >= LINES.length) return;
+    const current = LINES[lineIndex];
+
+    if (phase === "prompt") {
+      if (charIndex <= current.prompt.length) {
+        const t = setTimeout(() => {
+          setTyped((prev) => {
+            const next = [...prev];
+            next[lineIndex] = { prompt: current.prompt.slice(0, charIndex), out: "" };
+            return next;
+          });
+          setCharIndex((c) => c + 1);
+        }, 28);
+        return () => clearTimeout(t);
+      } else {
+        setPhase("pause");
+      }
+    } else if (phase === "pause") {
+      const t = setTimeout(() => {
+        setPhase("out");
+        setCharIndex(0);
+      }, 250);
+      return () => clearTimeout(t);
+    } else if (phase === "out") {
+      if (charIndex <= current.out.length) {
+        const t = setTimeout(() => {
+          setTyped((prev) => {
+            const next = [...prev];
+            next[lineIndex] = { prompt: current.prompt, out: current.out.slice(0, charIndex) };
+            return next;
+          });
+          setCharIndex((c) => c + 1);
+        }, 14);
+        return () => clearTimeout(t);
+      } else {
+        setPhase("nextline");
+      }
+    } else if (phase === "nextline") {
+      setLineIndex((i) => i + 1);
+      setCharIndex(0);
+      setPhase("prompt");
+    }
+  }, [phase, charIndex, lineIndex]);
+
   return (
-    <header className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 pt-24 overflow-hidden">
-
-      <div className="absolute top-1/2 left-1/2 w-[900px] h-[900px] bg-indigo-600 rounded-full blur-[200px] opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
-
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-20">
-
-          <div className="text-center md:text-left text-white">
-            <span className="inline-block mb-6 px-5 py-2 text-sm font-semibold text-indigo-300 bg-white/10 rounded-full">
-             Full-Stack Developer
-            </span>
-
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-              Hi, I'm{" "}
-              <span className="text-indigo-400">Manikanta</span>
-            </h1>
-
-            <p className="mt-5 text-xl text-slate-300 font-medium">
-              Building scalable & beautiful web applications
-            </p>
-
-            <p className="mt-4 text-slate-400 max-w-xl leading-relaxed">
-              Specialized in MERN Stack with a strong focus on performance,
-              clean UI, and production-ready architecture.
-            </p>
-
-            <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
-              <a href="#projects"
-                className="px-10 py-4 rounded-full bg-indigo-500 text-white font-semibold shadow-xl hover:bg-indigo-600 hover:scale-105 transition-all">
-                View Projects
-              </a>
-
-              <a href="https://drive.google.com/file/d/1XcookuLSIXgUPs91ggZqUrp5uRU4Tol7/view"
-                target="_blank" rel="noopener noreferrer" 
-                className="px-10 py-4 rounded-full border border-indigo-400 text-indigo-300 font-semibold hover:bg-indigo-500 hover:text-white hover:scale-105 transition-all">
-                Download Resume
-              </a>
-            </div>
+    <header className="hero" id="top">
+      <div className="hero-inner">
+        <div>
+          <div className="eyebrow-chip">
+            <span className="dot"></span> Open to internships &amp; grad roles
           </div>
 
-          <div className="flex justify-center md:justify-end">
-            <div className="relative">
+          <h1>
+            Manikanta builds
+            <br />
+            things that <span>ship</span>.
+          </h1>
 
-              <div className="absolute -inset-[140px] rounded-full border border-white/40 animate-spin"></div>
-              <div className="absolute -inset-[220px] rounded-full border border-white/25 animate-spin [animation-duration:40s]"></div>
-              <div className="absolute -inset-[300px] rounded-full border border-white/15 animate-spin [animation-duration:60s]"></div>
+          <p className="lede">
+            Full-stack developer and AI/ML undergrad who likes turning messy
+            problems into clean, working software — from React interfaces
+            down to the algorithms underneath.
+          </p>
 
-              <div className="relative rounded-full p-2 bg-white/10 backdrop-blur-xl">
-                <img src={profile} alt="Profile"
-                  className="w-72 h-72 md:w-80 md:h-80 rounded-full object-cover border-4 border-white shadow-2xl"/>
-              </div>
+          <div className="hero-actions">
+            <a href="#projects" className="btn-solid">View projects →</a>
+            <a href="#contact" className="btn-ghost">Get in touch</a>
+          </div>
+        </div>
+
+        <div>
+          <div className="terminal">
+            <div className="terminal-bar">
+              <span className="tdot t1"></span>
+              <span className="tdot t2"></span>
+              <span className="tdot t3"></span>
+              <span className="tname">manikanta — zsh</span>
+            </div>
+            <div className="terminal-body">
+              {typed.map((line, i) => (
+                <div key={i}>
+                  <span className="prompt">{line.prompt}</span>
+                  {line.out && <span className="out">{line.out}</span>}
+                </div>
+              ))}
+              {lineIndex >= LINES.length && <span className="cursor-blink"></span>}
             </div>
           </div>
         </div>
       </div>
+
+      <svg className="node-graph" viewBox="0 0 260 260" fill="none">
+        <g stroke="#3ECF8E" strokeWidth="1" opacity="0.5">
+          <line x1="30" y1="40" x2="120" y2="90" />
+          <line x1="120" y1="90" x2="210" y2="50" />
+          <line x1="120" y1="90" x2="90" y2="190" />
+          <line x1="120" y1="90" x2="200" y2="170" />
+          <line x1="90" y1="190" x2="200" y2="170" />
+          <line x1="30" y1="40" x2="90" y2="190" />
+        </g>
+        <g fill="#3ECF8E">
+          <circle cx="30" cy="40" r="5" />
+          <circle cx="120" cy="90" r="7" />
+          <circle cx="210" cy="50" r="5" />
+          <circle cx="90" cy="190" r="5" />
+          <circle cx="200" cy="170" r="6" />
+        </g>
+      </svg>
     </header>
   );
 };

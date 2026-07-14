@@ -1,65 +1,68 @@
 import React from "react";
-import { FaReact,FaNodeJs,FaHtml5,FaCss3Alt,FaJs,FaGitAlt,FaJava,FaDatabase,} from "react-icons/fa";
-import {SiMongodb,SiExpress,SiTailwindcss,SiPostman,SiVercel,SiFirebase,} from "react-icons/si";
-import { GiBrain } from "react-icons/gi";
-
-const skillCategories = {
-  Frontend: [
-    { name: "React.js", icon: <FaReact /> },
-    { name: "JavaScript", icon: <FaJs /> },
-    { name: "HTML", icon: <FaHtml5 /> },
-    { name: "CSS", icon: <FaCss3Alt /> },
-    { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-  ],
-  Backend: [
-    { name: "Node.js", icon: <FaNodeJs /> },
-    { name: "Express.js", icon: <SiExpress /> },
-    { name: "MongoDB", icon: <SiMongodb /> },
-  ],
-  "Programming Fundamentals": [
-    { name: "Java", icon: <FaJava /> },
-    { name: "DSA", icon: <GiBrain /> },
-    { name: "SQL", icon: <FaDatabase /> },
-  ],
-  "Tools & Deployment": [
-    { name: "Git & GitHub", icon: <FaGitAlt /> },
-    { name: "Postman", icon: <SiPostman /> },
-    { name: "Vercel", icon: <SiVercel /> },
-    { name: "Firebase", icon: <SiFirebase /> },
-  ],
-};
+import useReveal from "./useReveal";
 
 const Skills = () => {
+  const headRef = useReveal();
+  const codeRef = useReveal();
+
   return (
-    <section id="skills" className="bg-black-500 py-12 px-6 text-center">
-      <h2 className="text-[2.2rem] mb-8 text-[#222] inline-block pb-2 border-b-2 border-[#4facfe]">
-        Skills
-      </h2>
+    <section id="skills" style={{ background: "var(--paper-2)" }}>
+      <div className="section-inner">
+        <div className="section-head reveal" ref={headRef}>
+          <span className="tag">O(n) — skills</span>
+          <h2>The stack, as a manifest.</h2>
+          <p>
+            What I reach for by default, grouped the way a real project would
+            declare its dependencies.
+          </p>
+        </div>
 
-      <div className="max-w-[1000px] mx-auto">
-        {Object.entries(skillCategories).map(([category, skills]) => (
-          <div key={category} className="mb-10">
-            
-            <h3 className="text-xl text-[#007acc] mb-4">
-              {category}
-            </h3>
-
-            <div className="grid gap-5 [grid-template-columns:repeat(auto-fit,minmax(130px,1fr))]">
-              {skills.map((skill, index) => (
-                <div key={index}
-                  className="bg-white p-4 rounded-xl flex flex-col items-center
-                    shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(0,0,0,0.1)]">
-                  <span className="text-3xl mb-2 text-[#4facfe]">
-                    {skill.icon}
-                  </span>
-                  <p className="text-base text-[#333] font-medium">
-                    {skill.name}
-                  </p>
-                </div>
-              ))}
+        <div className="skills-wrap reveal" ref={codeRef}>
+          <div className="skills-file">
+            <div className="terminal-bar">
+              <span className="tdot t1"></span>
+              <span className="tdot t2"></span>
+              <span className="tdot t3"></span>
+              <span className="tname">skills.json</span>
+            </div>
+            <div className="code-block">
+              <div className="code-line">{"{"}</div>
+              <div className="code-line">
+                {"  "}<span className="k">"frontend"</span>: [
+                <span className="s">"React.js"</span>,{" "}
+                <span className="s">"JavaScript"</span>,{" "}
+                <span className="s">"HTML5"</span>,{" "}
+                <span className="s">"CSS3"</span>,{" "}
+                <span className="s">"Tailwind CSS"</span>],{" "}
+                <span className="c">// what the user sees</span>
+              </div>
+              <div className="code-line">
+                {"  "}<span className="k">"backend"</span>: [
+                <span className="s">"Node.js"</span>,{" "}
+                <span className="s">"Express.js"</span>,{" "}
+                <span className="s">"MongoDB"</span>],{" "}
+                <span className="c">// what makes it real</span>
+              </div>
+              <div className="code-line">
+                {"  "}<span className="k">"fundamentals"</span>: [
+                <span className="s">"Java"</span>,{" "}
+                <span className="s">"Data Structures & Algorithms"</span>,{" "}
+                <span className="s">"SQL"</span>],{" "}
+                <span className="c">// what makes it correct</span>
+              </div>
+              <div className="code-line">
+                {"  "}<span className="k">"tooling"</span>: [
+                <span className="s">"Git"</span>,{" "}
+                <span className="s">"GitHub"</span>,{" "}
+                <span className="s">"Postman"</span>,{" "}
+                <span className="s">"Vercel"</span>,{" "}
+                <span className="s">"Firebase"</span>]{" "}
+                <span className="c">// what ships it</span>
+              </div>
+              <div className="code-line">{"}"}</div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
